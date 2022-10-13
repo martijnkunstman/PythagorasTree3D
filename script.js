@@ -8,6 +8,7 @@ let branchesGlobal = 3;
 let angleGlobal;
 
 function init() {
+  
   lengthGlobal = 10;
   //renderer
   renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -30,18 +31,18 @@ function init() {
   camera.lookAt(0, 0, 0);
   //scene
   scene = new THREE.Scene();
-  const color = 0xaaaaaa; // white
-  scene.background = new THREE.Color( 0x555555 );
+  const color = 0xaabbcc; // white
+  scene.background = new THREE.Color( 0x24488C );
   scene.fog = new THREE.Fog(color, 0, 32);
   //controls
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.autoRotate = true;
   //light
-  const ambientLight = new THREE.AmbientLight(0x0000ff); // soft white light
+  const ambientLight = new THREE.AmbientLight(0x8c4524); // soft white light
   scene.add(ambientLight);
   //DirectionalLight
   //Create a DirectionalLight and turn on shadows for the light
-  const light = new THREE.PointLight(0xFFFF00, 0.8);
+  const light = new THREE.PointLight(0xddcc11, 0.8);
   light.position.set(20, 40, 10); //default; light shining from top
   light.castShadow = true; // default false
   light.shadow.radius = 4;
@@ -54,7 +55,7 @@ function init() {
   light.shadow.camera.far = 50; // default
   //sphere
   const geometry = new THREE.IcosahedronGeometry(10, 8);
-  const material = new THREE.MeshBasicMaterial({ color: 0x777777 });
+  const material = new THREE.MeshBasicMaterial({ color: 0x112233 });
   material.wireframe = true;
   material.fog = true;
   material.depthWire = true;
@@ -74,7 +75,7 @@ function init() {
 function cylinderMesh(pointX, pointY, width) {
   // edge from X to Y
   var direction = new THREE.Vector3().subVectors(pointY, pointX);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+  const material = new THREE.MeshStandardMaterial({ color: 0xffeedd });
   // Make the geometry (of "direction" length)
   var geometry = new THREE.CylinderGeometry(width * shrinkGlobal, width, direction.length(), 16, 1, false);
   // shift it so one end rests on the origin
@@ -94,7 +95,7 @@ function cylinderMesh(pointX, pointY, width) {
 
 function drawLineAndPoint(point, direction, length) {
   if (length > 0.4) {
-    const materialLine = new THREE.LineBasicMaterial({ color: 0xffffff });
+    const materialLine = new THREE.LineBasicMaterial({ color: 0xaaccbb});
     const points = [];
     points.push(point.clone());
     points.push(point.clone().add(direction.clone().multiplyScalar(length)));
